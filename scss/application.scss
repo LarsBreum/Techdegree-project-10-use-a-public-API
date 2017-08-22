@@ -8,7 +8,8 @@ h2 {
 }
 .employees {
 	display: flex;
-	justify-content: spaace-between;
+	justify-content: space-between;
+	flex-flow: row wrap;
 }
 .employee {
 	display: flex;
@@ -17,7 +18,6 @@ h2 {
 		font-weight: bold;
 	}
 	.employee-img {
-		flex-basis: 50%;
 		flex-grow: 1;
 		margin: 10px;
 	}
