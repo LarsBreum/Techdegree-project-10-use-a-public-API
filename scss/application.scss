@@ -1,0 +1,33 @@
+//font
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+body {
+	font-family: 'PT Sans', sans-serif;
+}
+h2 {
+	text-transform: uppercase;
+}
+.employees {
+	display: flex;
+	justify-content: spaace-between;
+}
+.employee {
+	display: flex;
+	justify-content: spaace-between;
+	.employee-name {
+		font-weight: bold;
+	}
+	.employee-img {
+		flex-basis: 50%;
+		flex-grow: 1;
+		margin: 10px;
+	}
+	.employee-information {
+		flex-basis: 50%;
+		flex-grow: 1;
+		margin: 10px;
+	}
+}
+.employee img {
+	border-radius: 50%;
+	max-width: 100%;
+}
