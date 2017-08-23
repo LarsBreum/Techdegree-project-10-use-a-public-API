@@ -64,11 +64,27 @@ $.ajax({
     employees.click( () => {
       modal.css('display', 'initial');
       //create the modalWidget content
-      let modalContent = "";
+      let modalContent = '<div class="modal-content">';
+      modalContent += '<div class="modal-img>"';
+      modalContent += '<img src="' + imgs[0] + '" alt="employee img">';
+      modalContent += '</div>'//img container end
+      modalContent += '<div class="modal-info">';
+      modalContent += '<p class="employee-name">' + firstNames[0] + ' ' + lastNames[0] + '</p>';
+      modalContent += '<p>' + /*username*/ + '</p>';
+      modalContent += '<p>' + /*email*/ + '</p>';
+      modalContent += '<p>' + /*Cellphone*/ + '</p>';
+      modalContent += '<p>' + /*adress*/ + '</p>';
+      modalContent += '<p>' + /*Birthday*/ + '</p>';
+      modalContent += '</div>'; //modal-info end
+      modalContent += '</div>'; //modal-content end
 
+      console.log(modalContent);
+      $('.modal').append(modalContent);
 
     });
     modalCloseButton.click( () => {
+      modalContent = "";
+      $('.modal-content').remove();
       modal.css('display', 'none');
     });
 
