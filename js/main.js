@@ -7,6 +7,10 @@ $.ajax({
   success: function(data) {
   	//log the entire object to the console
     console.log(data);
+
+    /**************************
+    *** Front page directory **
+    **************************/
     //get array of all first names
     let firstNames = [];
     for (let i = 0; i < data.results.length; i++) {
@@ -33,21 +37,33 @@ $.ajax({
       cities.push(data.results[i].location.city);
     }
 
-    //create the employee widget
-    let employee = "";
+    //create the employeeWidget
+    let employeeWidget = "";
     for (let i = 0; i < data.results.length; i++) {
-      employee += '<div class="employee employee-' + i + '">';
-      employee += '<div class="employee-img">';
-      employee += '<img alt="" src="' + imgs[i] + '">';
-      employee += '</div>'; //end the img container
-      employee += '<div class="employee-information">';
-      employee += '<p class="employee-name">' + firstNames[i] + " " + lastNames[i] + '</p>';
-      employee += '<p class="employee-email">' + emails[i] + '</p>';
-      employee += '<p class="employee-city">' + cities[i] + '</p>';
-      employee += '</div>';//end employee-information div
-      employee += '</div>';//end employee div
+      employeeWidget += '<div class="employee employee-' + i + '">';
+      employeeWidget += '<div class="employee-img">';
+      employeeWidget += '<img alt="" src="' + imgs[i] + '">';
+      employeeWidget += '</div>'; //end the img container
+      employeeWidget += '<div class="employee-information">';
+      employeeWidget += '<p class="employee-name">' + firstNames[i] + " " + lastNames[i] + '</p>';
+      employeeWidget += '<p class="employee-email">' + emails[i] + '</p>';
+      employeeWidget += '<p class="employee-city">' + cities[i] + '</p>';
+      employeeWidget += '</div>';//end employee-information div
+      employeeWidget += '</div>';//end employee div
     }
 
-    $('.employees').append(employee);
-  	}
+    $('.employees').append(employeeWidget);
+    /**************************
+    *********** Modal *********
+    **************************/
+    /* on click, show modal with img, name, email, cell, adress, bday*/
+    //I only need to get the info for the  specific employee
+    const employees = $('.employee');
+    console.log(employees[0].className);
+    employees.click( () => {
+      let employee = $(this).attr('class');
+      console.log(employee);
+    });
+
+  	} //end succes function
 }); //end AJAX

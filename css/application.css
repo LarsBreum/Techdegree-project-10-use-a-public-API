@@ -37,7 +37,8 @@ h2 {
     margin: 1rem;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #dfdfdf; }
+    border: 1px solid #dfdfdf;
+    cursor: pointer; }
     @media screen and (min-width: 768px) {
       .employees .employee {
         display: flex;
