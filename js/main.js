@@ -42,7 +42,7 @@ $.ajax({
     for (let i = 0; i < data.results.length; i++) {
       employeeWidget += '<div class="employee employee-' + i + '">';
       employeeWidget += '<div class="employee-img">';
-      employeeWidget += '<img alt="" src="' + imgs[i] + '">';
+      employeeWidget += '<img alt="employee img" src="' + imgs[i] + '">';
       employeeWidget += '</div>'; //end the img container
       employeeWidget += '<div class="employee-information">';
       employeeWidget += '<p class="employee-name">' + firstNames[i] + " " + lastNames[i] + '</p>';
@@ -59,10 +59,17 @@ $.ajax({
     /* on click, show modal with img, name, email, cell, adress, bday*/
     //I only need to get the info for the  specific employee
     const employees = $('.employee');
-    console.log(employees[0].className);
+    const modal = $('.modalBackdrop');
+    const modalCloseButton = $('.modal .close');
     employees.click( () => {
-      let employee = $(this).attr('class');
-      console.log(employee);
+      modal.css('display', 'initial');
+      //create the modalWidget content
+      let modalContent = "";
+
+
+    });
+    modalCloseButton.click( () => {
+      modal.css('display', 'none');
     });
 
   	} //end succes function

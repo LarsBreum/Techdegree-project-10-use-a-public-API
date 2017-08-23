@@ -88,27 +88,43 @@ h2 {
   background-color: rgba(0, 0, 0, 0.4);
   /* Black w/ opacity */ }
 
+.modal-content {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%; }
+
 .modal {
   z-index: 900;
   width: 90%;
   max-width: 460px;
-  height: 200px;
+  height: auto;
   border: 1px solid #dfdfdf;
   border-radius: 5px;
   position: fixed;
   left: 5%;
   top: 40%;
-  padding: 20px; }
+  padding: 20px;
+  background: #fff; }
   @media screen and (min-width: 515px) {
     .modal {
       width: 500px;
-      height: 200px;
+      height: auto;
       top: 50%;
       left: 50%;
       margin-top: -100px;
       /* Negative half of height. */
       margin-left: -250px;
       /* Negative half of width. */ } }
+  .modal .modal-info {
+    margin-right: 50%;
+    margin: 0 auto; }
+  .modal .modal-img {
+    width: 120px; }
+    .modal .modal-img img {
+      width: 100%;
+      border-radius: 50%; }
   .modal .close {
     color: #aaa;
     float: right;
