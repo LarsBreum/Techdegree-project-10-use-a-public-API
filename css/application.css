@@ -69,4 +69,54 @@ h2 {
   border-radius: 50%;
   max-width: 100%; }
 
+.modalBackdrop {
+  display: none;
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */ }
+
+.modal {
+  z-index: 900;
+  width: 90%;
+  max-width: 460px;
+  height: 200px;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  position: fixed;
+  left: 5%;
+  top: 40%;
+  padding: 20px; }
+  @media screen and (min-width: 515px) {
+    .modal {
+      width: 500px;
+      height: 200px;
+      top: 50%;
+      left: 50%;
+      margin-top: -100px;
+      /* Negative half of height. */
+      margin-left: -250px;
+      /* Negative half of width. */ } }
+  .modal .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold; }
+    .modal .close:hover, .modal .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer; }
+
 /*# sourceMappingURL=application.css.map */
