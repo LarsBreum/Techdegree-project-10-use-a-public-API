@@ -8,9 +8,9 @@ $.ajax({
   	//log the entire object to the console
     console.log(data);
 
-    /**************************
-    *** Front page directory **
-    **************************/
+    /***************************
+    *** Front page directory ***
+    ***************************/
     //get array of all first names
     let firstNames = [];
     for (let i = 0; i < data.results.length; i++) {
@@ -53,40 +53,51 @@ $.ajax({
     }
 
     $('.employees').append(employeeWidget);
+
     /**************************
     *********** Modal *********
     **************************/
     /* on click, show modal with img, name, email, cell, adress, bday*/
     //I only need to get the info for the  specific employee
-    const employees = $('.employee');
+    /*const employees = $('.employee');
     const modal = $('.modalBackdrop');
-    const modalCloseButton = $('.modal .close');
     employees.click( () => {
+      //get the modal content
+      console.log($(this));
+
       modal.css('display', 'initial');
       //create the modalWidget content
-      let modalContent = '<div class="modal-content">';
-      modalContent += '<div class="modal-img>"';
-      modalContent += '<img src="' + imgs[0] + '" alt="employee img">';
-      modalContent += '</div>'//img container end
-      modalContent += '<div class="modal-info">';
-      modalContent += '<p class="employee-name">' + firstNames[0] + ' ' + lastNames[0] + '</p>';
-      modalContent += '<p>' + /*username*/ + '</p>';
-      modalContent += '<p>' + /*email*/ + '</p>';
-      modalContent += '<p>' + /*Cellphone*/ + '</p>';
-      modalContent += '<p>' + /*adress*/ + '</p>';
-      modalContent += '<p>' + /*Birthday*/ + '</p>';
-      modalContent += '</div>'; //modal-info end
-      modalContent += '</div>'; //modal-content end
+      let modalImg = '<div class="modal-img">';
+      modalImg += '<img src="' + data.results[0].picture.large + '" alt="employee img">';
+      modalImg += '</div>'//img container end
 
-      console.log(modalContent);
-      $('.modal').append(modalContent);
+      let modalInfo = '<div class="modal-info">';
+      modalInfo += '<p class="employee-name">' + firstNames[0] + ' ' + lastNames[0] + '</p>';
+      modalInfo += '<p>' + 'username' + '</p>';
+      modalInfo += '<p>' + 'email' + '</p>';
+      modalInfo += '<p>' + 'cellphone' + '</p>';
+      modalInfo += '<p>' + 'address' + '</p>';
+      modalInfo += '<p>' + 'Birthday' + '</p>';
+      modalInfo += '</div>'; //modal-info end
 
-    });
+      $('.modal-content').append(modalImg, modalInfo);
+    });//end employees.click*/
+
+   /* const modalCloseButton = $('.modal .close');
     modalCloseButton.click( () => {
-      modalContent = "";
-      $('.modal-content').remove();
+      //reset the modal
+      modalImg = "";
+      modalInfo = "";
+      $('.modal-info, .modal-img').remove();
       modal.css('display', 'none');
+    });*/
+
+    const employees = $('.employee');
+    console.log(employees)
+    employees.click( () => {
+      console.log(this);
     });
 
   	} //end succes function
 }); //end AJAX
+
