@@ -92,11 +92,17 @@ $.ajax({
       modal.css('display', 'none');
     });*/
 
+    /********************
+    **PROBLEM IS HERE***
+    *******************/
+    //jQuery
     /*const employees = $('.employee');
     console.log(employees)
     employees.click( () => {
       console.log(this);
     });*/
+
+    //vanilla js
     const employees = document.getElementsByClassName('employee');
     console.log(employees);
     for (let i = 0; i < employees.length; i++) {
