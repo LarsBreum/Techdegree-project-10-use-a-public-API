@@ -92,11 +92,18 @@ $.ajax({
       modal.css('display', 'none');
     });*/
 
-    const employees = $('.employee');
+    /*const employees = $('.employee');
     console.log(employees)
     employees.click( () => {
       console.log(this);
-    });
+    });*/
+    const employees = document.getElementsByClassName('employee');
+    console.log(employees);
+    for (let i = 0; i < employees.length; i++) {
+      employees[i].addEventListener('click', () => {
+        console.log(this);
+      });
+    }
 
   	} //end succes function
 }); //end AJAX
