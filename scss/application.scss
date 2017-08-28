@@ -42,6 +42,10 @@ h2 {
 		border-radius: 5px;
 		border: 1px solid #dfdfdf;
 		cursor: pointer;
+		transition: transform .5s ease-in-out;
+			&:hover {
+				transform: rotate(12deg);			
+			}
 		@media screen and (min-width: 768px) {
 			display: flex;
 			flex-flow: row nowrap;

@@ -38,7 +38,10 @@ h2 {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #dfdfdf;
-    cursor: pointer; }
+    cursor: pointer;
+    transition: transform .5s ease-in-out; }
+    .employees .employee:hover {
+      transform: rotate(12deg); }
     @media screen and (min-width: 768px) {
       .employees .employee {
         display: flex;
