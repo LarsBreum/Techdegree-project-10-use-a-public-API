@@ -1,4 +1,5 @@
 $(document).ready( () => {
+  modal = $('.modalBackdrop');
   function getEmployeesData (data) {
     //get array of all first names
       let firstNames = [];
@@ -116,12 +117,33 @@ $(document).ready( () => {
   function employeeClickHandler(data) {
     $('.employee').on('click', () => {
       let modalData = getModalData(data, index);
-      return modalData;
+      drawModal(modalData, index);;
     } );
   }
 
-  function drawModal(data) {
-    modal = $('.modalBackdrop');
+  function drawModal(modalData, i) {
+    console.log(modalData.address);
+    modal.css('display', 'initial');
+
+  let modalImg = '<div class="modal-img">';
+    modalImg += '<img src="' + modalData.img + '" alt="employee img">';
+    modalImg += '</div>'//img container end
+    let modalInfo = '<div class="modal-info">';
+    modalInfo += '<p class="employee-name">' + modalData.name + '</p>';
+    modalInfo += '<p>' + modalData.userName + '</p>';
+    modalInfo += '<p>' + modalData.email + '</p>';
+    modalInfo += '<p>' + modalData.cell + '</p>';
+    modalInfo += '<p>' + modalData.address + '</p>';
+    modalInfo += '<p>' + modalData.birthday + '</p>';
+    modalInfo += '</div>'; //modal-info end
+    $('.modal-content').append(modalImg, modalInfo);
+  }
+
+  function closeModal() {
+    modalImg = "";
+    modalInfo = "";
+    $('.modal-info, .modal-img').remove();
+    modal.css('display', 'none');
   }
 
   const numOfEmployees = 12;
@@ -134,7 +156,8 @@ $(document).ready( () => {
         drawEmployeeWigdet(employeesData);
         let index = $('.employee').click(getIndex);
         let modalData = employeeClickHandler(employeesData);
-        drawModal(modalData);
+        const modalCloseButton = $('.modal .close');
+        modalCloseButton.click(closeModal);
       } //end succes function
   }); //end AJAX
 }); //end document ready
