@@ -1,116 +1,140 @@
-//the numbers og employees I want to show
-const numOfEmployees = 12;
-//Get all the results
-$.ajax({
-  url: 'https://randomuser.me/api/?results=' + numOfEmployees,
-  dataType: 'json',
-  success: function(data) {
-  	//log the entire object to the console
-    console.log(data);
-
-    /***************************
-    *** Front page directory ***
-    ***************************/
+$(document).ready( () => {
+  function getEmployeesData (data) {
     //get array of all first names
-    let firstNames = [];
-    for (let i = 0; i < data.results.length; i++) {
-      firstNames.push(data.results[i].name.first);
-    }
-    //get array of all last names
-    let lastNames = [];
-    for (let i = 0; i < data.results.length; i++) {
-      lastNames.push(data.results[i].name.last);
-    }
-    //get array of all imgs
-    let imgs = [];
-    for (let i = 0; i < data.results.length; i++) {
-      imgs.push(data.results[i].picture.large);
-    }
-    //get array of all emails
-    let emails = [];
-    for (let i = 0; i < data.results.length; i++) {
-      emails.push(data.results[i].email);
-    }
-    //get array of all cities
-    let cities = [];
-    for (let i = 0; i < data.results.length; i++) {
-      cities.push(data.results[i].location.city);
-    }
+      let firstNames = [];
+      for (let i = 0; i < numOfEmployees; i++) {
+        firstNames.push(data[i].name.first);
+      }
+      //get array of all last names
+      let lastNames = [];
+      for (let i = 0; i < numOfEmployees; i++) {
+        lastNames.push(data[i].name.last);
+      }
+      //get array of all imgs
+      let imgs = [];
+      for (let i = 0; i < numOfEmployees; i++) {
+        imgs.push(data[i].picture.large);
+      }
+      //get array of all emails
+      let emails = [];
+      for (let i = 0; i < numOfEmployees; i++) {
+        emails.push(data[i].email);
+      }
+      //get array of all cities
+      let cities = [];
+      for (let i = 0; i < numOfEmployees; i++) {
+        cities.push(data[i].location.city);
+      }
+      //get array of usernames
+      let usernames = [];
+      for (let i = 0; i < numOfEmployees; i++) {
+        usernames.push(data[i].id.name);
+      }
+      //get array of cell numbers
+      let cellNr = [];
+      for (let i = 0; i < numOfEmployees; i++) {
+        cellNr.push(data[i].cell);
+      }
+      //get array of streetnames
+      let streetNames = [];
+      for (let i = 0; i < numOfEmployees; i++) {
+        streetNames.push(data[i].location.street);
+      }
+      //get array of countries
+      let countries = [];
+      for (let i = 0; i < numOfEmployees; i++) {
+        countries.push(data[i].nat);
+      }
+      //get array of post-codes
+      let postCodes = [];
+      for (let i = 0; i < numOfEmployees; i++) {
+        postCodes.push(data[i].location.postcode);
+      }
+      //get arry of birthdays
+      let birthdays = [];
+      for (let i = 0; i < numOfEmployees; i++) {
+        birthdays.push(data[i].registered);
+      }
+      let employeesData = {
+        firstNames,
+        lastNames,
+        imgs,
+        emails,
+        cities,
+        usernames,
+        cellNr,
+        streetNames,
+        countries,
+        postCodes,
+        birthdays
+      }
+      console.log(employeesData);
+      return employeesData;
+  }
 
-    //create the employeeWidget
+  function drawEmployeeWigdet (widgetData) {
     let employeeWidget = "";
-    for (let i = 0; i < data.results.length; i++) {
-      employeeWidget += '<div class="employee employee-' + i + '">';
-      employeeWidget += '<div class="employee-img">';
-      employeeWidget += '<img alt="employee img" src="' + imgs[i] + '">';
-      employeeWidget += '</div>'; //end the img container
-      employeeWidget += '<div class="employee-information">';
-      employeeWidget += '<p class="employee-name">' + firstNames[i] + " " + lastNames[i] + '</p>';
-      employeeWidget += '<p class="employee-email">' + emails[i] + '</p>';
-      employeeWidget += '<p class="employee-city">' + cities[i] + '</p>';
-      employeeWidget += '</div>';//end employee-information div
-      employeeWidget += '</div>';//end employee div
-    }
-
+      for (let i = 0; i < numOfEmployees; i++) {
+        employeeWidget += '<div class="employee employee-' + i + '">';
+        employeeWidget += '<div class="employee-img">';
+        employeeWidget += '<img alt="employee img" src="' + widgetData.imgs[i] + '">';
+        employeeWidget += '</div>'; //end the img container
+        employeeWidget += '<div class="employee-information">';
+        employeeWidget += '<p class="employee-name">' + widgetData.firstNames[i] + " " + widgetData.lastNames[i] + '</p>';
+        employeeWidget += '<p class="employee-email">' + widgetData.emails[i] + '</p>';
+        employeeWidget += '<p class="employee-city">' + widgetData.cities[i] + '</p>';
+        employeeWidget += '</div>';//end employee-information div
+        employeeWidget += '</div>';//end employee div
+      }
     $('.employees').append(employeeWidget);
+  }
+  function getModalData(data, i) {
+    console.log(i);
+    let img = data.imgs[i];
+    let name = data.firstNames[i] + " " + data.lastNames[i];
+    let userName = data.usernames[i];
+    let email = data.emails[i];
+    let cell = data.cellNr[i];
+    let address = data.streetNames[i] + " " + data.cities[i] + " " + data.countries[i] + " " + data.postCodes[i];
+    let birthday = data.birthdays[i];
 
-    /**************************
-    *********** Modal *********
-    **************************/
-    /* on click, show modal with img, name, email, cell, adress, bday*/
-    //I only need to get the info for the  specific employee
-    /*const employees = $('.employee');
-    const modal = $('.modalBackdrop');
-    employees.click( () => {
-      //get the modal content
-      console.log($(this));
+    return {
+      img,
+      name,
+      userName,
+      email,
+      cell,
+      address,
+      birthday
+    };
+  }
+  function getIndex () {
+    index = $('.employee').index(this);
+    console.log("index: " + index);
+    return index;
+  }
+  function employeeClickHandler(data) {
+    $('.employee').on('click', () => {
+      let modalData = getModalData(data, index);
+      return modalData;
+    } );
+  }
 
-      modal.css('display', 'initial');
-      //create the modalWidget content
-      let modalImg = '<div class="modal-img">';
-      modalImg += '<img src="' + data.results[0].picture.large + '" alt="employee img">';
-      modalImg += '</div>'//img container end
+  function drawModal(data) {
+    modal = $('.modalBackdrop');
+  }
 
-      let modalInfo = '<div class="modal-info">';
-      modalInfo += '<p class="employee-name">' + firstNames[0] + ' ' + lastNames[0] + '</p>';
-      modalInfo += '<p>' + 'username' + '</p>';
-      modalInfo += '<p>' + 'email' + '</p>';
-      modalInfo += '<p>' + 'cellphone' + '</p>';
-      modalInfo += '<p>' + 'address' + '</p>';
-      modalInfo += '<p>' + 'Birthday' + '</p>';
-      modalInfo += '</div>'; //modal-info end
-
-      $('.modal-content').append(modalImg, modalInfo);
-    });//end employees.click*/
-
-   /* const modalCloseButton = $('.modal .close');
-    modalCloseButton.click( () => {
-      //reset the modal
-      modalImg = "";
-      modalInfo = "";
-      $('.modal-info, .modal-img').remove();
-      modal.css('display', 'none');
-    });*/
-
-    /********************
-    **PROBLEM IS HERE***
-    *******************/
-    //jQuery
-    /*const employees = $('.employee');
-    console.log(employees)
-    employees.click( () => {
-      console.log(this);
-    });*/
-
-    //vanilla js
-    const employees = document.getElementsByClassName('employee');
-    console.log(employees);
-    for (let i = 0; i < employees.length; i++) {
-      employees[i].addEventListener('click', () => {
-        console.log(this);
-      });
-    }
-
-  	} //end succes function
-}); //end AJAX
-
+  const numOfEmployees = 12;
+  const data = $.ajax({
+    url: 'https://randomuser.me/api/?results=' + numOfEmployees,
+    dataType: 'json',
+    success: function(data) {
+        const results = data.results;
+        let employeesData = getEmployeesData(results);
+        drawEmployeeWigdet(employeesData);
+        let index = $('.employee').click(getIndex);
+        let modalData = employeeClickHandler(employeesData);
+        drawModal(modalData);
+      } //end succes function
+  }); //end AJAX
+}); //end document ready
