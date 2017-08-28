@@ -54,7 +54,7 @@ $(document).ready( () => {
       //get arry of birthdays
       let birthdays = [];
       for (let i = 0; i < numOfEmployees; i++) {
-        birthdays.push(data[i].registered);
+        birthdays.push(data[i].dob);
       }
       let employeesData = {
         firstNames,
@@ -145,19 +145,40 @@ $(document).ready( () => {
     $('.modal-info, .modal-img').remove();
     modal.css('display', 'none');
   }
-
+  function getNames(data) {
+    let names = [];
+    for (let i = 0; i < numOfEmployees; i++) {
+      names.push(data.firstNames[i] + " " + data.lastNames[i]);
+    }
+    return names;
+  }
+  function keyUpHandler(array) {
+    const input = $('input[type=search');
+    input.keyup( () => {
+      let = inputVal = input.val();
+      search(inputVal, array);
+    });
+    
+    
+  }
+  function search(input, array) {
+    
+  }
   const numOfEmployees = 12;
   const data = $.ajax({
-    url: 'https://randomuser.me/api/?results=' + numOfEmployees,
+    url: 'https://randomuser.me/api/?results=' + numOfEmployees + '&nat=gb,dk,fr,us',
     dataType: 'json',
     success: function(data) {
         const results = data.results;
+        console.log(results);
         let employeesData = getEmployeesData(results);
         drawEmployeeWigdet(employeesData);
         let index = $('.employee').click(getIndex);
         let modalData = employeeClickHandler(employeesData);
         const modalCloseButton = $('.modal .close');
         modalCloseButton.click(closeModal);
+        let names = getNames(employeesData);
+        keyUpHandler(names);
       } //end succes function
   }); //end AJAX
 }); //end document ready

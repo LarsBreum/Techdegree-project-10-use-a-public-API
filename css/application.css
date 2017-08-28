@@ -138,4 +138,15 @@ h2 {
       text-decoration: none;
       cursor: pointer; }
 
+input[type="search"] {
+  border: 2px solid lightgrey;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  font-size: 16pt;
+  margin: 0 auto; }
+
+input[type="search"]:focus {
+  outline: none; }
+
 /*# sourceMappingURL=application.css.map */
