@@ -69,7 +69,6 @@ $(document).ready( () => {
         postCodes,
         birthdays
       }
-      console.log(employeesData);
       return employeesData;
   }
 
@@ -90,7 +89,6 @@ $(document).ready( () => {
     $('.employees').append(employeeWidget);
   }
   function getModalData(data, i) {
-    console.log(i);
     let img = data.imgs[i];
     let name = data.firstNames[i] + " " + data.lastNames[i];
     let userName = data.usernames[i];
@@ -111,7 +109,6 @@ $(document).ready( () => {
   }
   function getIndex () {
     index = $('.employee').index(this);
-    console.log("index: " + index);
     return index;
   }
   function employeeClickHandler(data) {
@@ -122,7 +119,6 @@ $(document).ready( () => {
   }
 
   function drawModal(modalData, i) {
-    console.log(modalData.address);
     modal.css('display', 'initial');
 
   let modalImg = '<div class="modal-img">';
@@ -152,17 +148,23 @@ $(document).ready( () => {
     }
     return names;
   }
-  function keyUpHandler(array) {
+  function keyUpHandler(array, elements) {
     const input = $('input[type=search');
     input.keyup( () => {
-      let = inputVal = input.val();
-      search(inputVal, array);
+      let inputVal = input.val().toLowerCase();
+      console.log(inputVal);
+      search(inputVal, array, elements);
     });
     
-    
   }
-  function search(input, array) {
-    
+  function search(input, array, elements) {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].indexOf(input) === -1) {
+        $(elements[i]).hide('1000');
+      } else {
+        $(elements[i]).show('1000');
+      }
+    }
   }
   const numOfEmployees = 12;
   const data = $.ajax({
@@ -170,7 +172,6 @@ $(document).ready( () => {
     dataType: 'json',
     success: function(data) {
         const results = data.results;
-        console.log(results);
         let employeesData = getEmployeesData(results);
         drawEmployeeWigdet(employeesData);
         let index = $('.employee').click(getIndex);
@@ -178,7 +179,8 @@ $(document).ready( () => {
         const modalCloseButton = $('.modal .close');
         modalCloseButton.click(closeModal);
         let names = getNames(employeesData);
-        keyUpHandler(names);
+        let employees = $('.employee');
+        keyUpHandler(names, employees);
       } //end succes function
   }); //end AJAX
 }); //end document ready
