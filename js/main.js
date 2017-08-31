@@ -1,4 +1,10 @@
 $(document).ready( () => {
+
+   lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true
+    })
+
   modal = $('.modalBackdrop');
   function getEmployeesData (data) {
     //get array of all first names
@@ -77,10 +83,17 @@ $(document).ready( () => {
       for (let i = 0; i < numOfEmployees; i++) {
         employeeWidget += '<div class="employee employee-' + i + '">';
         employeeWidget += '<div class="employee-img">';
+        employeeWidget += '<a href="' + widgetData.imgs[i] + 
+                          ' data-lightbox="image employee-' + i + 
+                          '" data-title="' 
+                          +  widgetData.firstNames[i] + ' ' 
+                          + widgetData.lastNames[i] + '"></a>';
+        employeeWidget += '<div class="employee-img">';
         employeeWidget += '<img alt="employee img" src="' + widgetData.imgs[i] + '">';
         employeeWidget += '</div>'; //end the img container
+        employeeWidget += '</div>'; //end the img container
         employeeWidget += '<div class="employee-information">';
-        employeeWidget += '<p class="employee-name">' + widgetData.firstNames[i] + " " + widgetData.lastNames[i] + '</p>';
+        employeeWidget += '<p class="employee-name">' + widgetData.firstNames[i] + ' ' + widgetData.lastNames[i] + '</p>';
         employeeWidget += '<p class="employee-email">' + widgetData.emails[i] + '</p>';
         employeeWidget += '<p class="employee-city">' + widgetData.cities[i] + '</p>';
         employeeWidget += '</div>';//end employee-information div
@@ -175,12 +188,18 @@ $(document).ready( () => {
         let employeesData = getEmployeesData(results);
         drawEmployeeWigdet(employeesData);
         let index = $('.employee').click(getIndex);
-        let modalData = employeeClickHandler(employeesData);
-        const modalCloseButton = $('.modal .close');
-        modalCloseButton.click(closeModal);
+        //let modalData = employeeClickHandler(employeesData);
+        //const modalCloseButton = $('.modal .close');
+        //modalCloseButton.click(closeModal);
         let names = getNames(employeesData);
         let employees = $('.employee');
         keyUpHandler(names, employees);
       } //end succes function
   }); //end AJAX
+
+     lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true
+    })
+
 }); //end document ready
