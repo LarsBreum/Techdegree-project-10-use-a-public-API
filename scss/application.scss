@@ -1,6 +1,5 @@
 //font
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
-@import 'lightbox.css';
 * {
 	box-sizing: border-box;
 }
@@ -80,6 +79,7 @@ h2 {
 .employee img {
 	border-radius: 50%;
 	max-width: 100%;
+	min-width:50px!important;
 }
 .modalBackdrop {
 	display: none;
