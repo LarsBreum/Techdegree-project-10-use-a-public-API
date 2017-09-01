@@ -17,7 +17,7 @@ h2 {
   text-align: center;
   margin: 0 auto;
   background: #fcfcfc;
-  max-width: 1000px; }
+  max-width: 1200px; }
   @media screen and (min-width: 768px) {
     .wrapper {
       text-align: left;
@@ -66,12 +66,12 @@ h2 {
 
 .employee-email {
   word-wrap: break-word;
-  margin: 0 auto; }
+  margin: 0 auto;
+  height: auto; }
 
 .employee img {
   border-radius: 50%;
-  max-width: 100%;
-  min-width: 50px !important; }
+  max-width: 100%; }
 
 .modalBackdrop {
   display: none;
